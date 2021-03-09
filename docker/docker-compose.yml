@@ -1,0 +1,23 @@
+version: "3.1"
+services:
+  php:
+    build: php
+    container_name: challenge-php
+    volumes:
+      - ../:/var/www/html/
+    ports:
+      - "9001:9000"
+    command: php -S 0.0.0.0:9000 -t public/
+  mysql:
+    image: mysql:5.7
+    container_name: challenge-mysql
+    volumes:
+      - ../:/var/www/html/
+    ports:
+      - "9002:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=challenge
+      - MYSQL_DATABASE=challenge
+      - MYSQL_USER=challenge
+      - MYSQL_PASSWORD=challenge
+      
