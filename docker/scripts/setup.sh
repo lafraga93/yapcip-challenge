@@ -18,7 +18,7 @@ echo ""
 echo "[ X ] - Criar arquivos de configuração"
 echo "[ X ] - Subir containers Docker"
 echo "[ X ] - Instalar dependências do projeto via composer"
-echo "[...] - Executar database migrations e seeds"
+echo "[...] - Executar database migrations e seeders"
 
 docker exec challenge-php php artisan migrate
 docker exec challenge-php php artisan db:seed
@@ -28,7 +28,7 @@ echo ""
 echo "[ X ] - Criar arquivos de configuração"
 echo "[ X ] - Subir containers Docker"
 echo "[ X ] - Instalar dependências do projeto via composer"
-echo "[ X ] - Executar database migrations e seeds"
+echo "[ X ] - Executar database migrations e seeders"
 
 echo ""
 echo "Enjoy! Projeto configurado com sucesso!"
