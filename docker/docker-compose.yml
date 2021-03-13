@@ -6,15 +6,17 @@ services:
     volumes:
       - ../:/var/www/html/
     ports:
-      - "9001:9000"
+      - "9000:9000"
     command: php -S 0.0.0.0:9000 -t public/
+    links:
+      - mysql
   mysql:
     image: mysql:5.7
     container_name: challenge-mysql
     volumes:
       - ../:/var/www/html/
     ports:
-      - "9002:3306"
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=challenge
       - MYSQL_DATABASE=challenge
