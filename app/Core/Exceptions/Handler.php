@@ -28,12 +28,9 @@ final class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception): JsonResponse
     {     
-        $statusCode = $exception->getCode();
+        $statusCode = $exception->getCode() !== 0 ? $exception->getCode() : 500;
+        $message = $statusCode !== 0 ? $exception->getMessage() : 'Não foi possível processar a requisição.';
 
-        if ($statusCode !== 0) {
-            return JsonResponseTrait::response($exception->getMessage(), [], $statusCode);
-        }
-
-        return JsonResponseTrait::response('Não foi possível processar a requisição.', [], 500);
+        return JsonResponseTrait::response($message, [], $statusCode);
     }
 }
