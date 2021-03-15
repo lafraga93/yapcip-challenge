@@ -12,9 +12,4 @@ final class UserRepository implements UserRepositoryInterface
     {
         return (object) [];
     }
-
-    public function updateUserBalance(float $value): bool
-    {
-        return true;
-    }
 }

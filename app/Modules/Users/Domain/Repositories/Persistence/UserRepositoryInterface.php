@@ -7,5 +7,4 @@ namespace App\Modules\Users\Domain\Repositories\Persistence;
 interface UserRepositoryInterface
 {
     public function getUserById(int $userId): object;
-    public function updateUserBalance(float $value): bool;
 }
