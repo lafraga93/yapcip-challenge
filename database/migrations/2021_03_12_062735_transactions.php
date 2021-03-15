@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,14 +14,10 @@ final class Transactions extends Migration
     {
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
-            $table->decimal('amount');
-
-            $table->foreignId('transaction_type_id')->constrained();
-            $table->foreignId('transaction_status_id')->constrained();
+            $table->decimal('value');
             $table->foreignId('payer_id')->constrained('users');
             $table->foreignId('payee_id')->constrained('users');
-            $table->foreignId('wallet_id')->constrained();
-
+            $table->foreignId('transaction_type_id')->constrained();
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
         });
