@@ -6,6 +6,9 @@ namespace App\Modules\Transactions\Domain\Repositories\Persistence;
 
 interface TransactionRepositoryInterface
 {
-    public function getTransactionById(int $transactionId): object;
+    /**
+     * @return object|null
+     */
+    public function getTransactionById(int $transactionId);
     public function persiste(object $transaction, string $transactionTypeSlug): object;
 }

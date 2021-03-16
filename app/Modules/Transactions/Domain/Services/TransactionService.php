@@ -58,7 +58,7 @@ final class TransactionService
         $isAuthorized = $this->authorizationRepository->check();
 
         if (!$isAuthorized) {
-            throw new Exception('Erro: Transação não autorizada.', 500);
+            throw new Exception('Erro: Transação não autorizada.', 401);
         }
 
         return $this->persiste(self::TRANSFER_SLUG);
@@ -74,7 +74,7 @@ final class TransactionService
         $transaction = $this->transactionRepository->getTransactionById($transactionId);
 
         if (!$transaction) {
-            throw new Exception('Não foi possível recuperar a transação.', 422);
+            throw new Exception('Não foi possível recuperar a transação.', 500);
         }
 
         return $transaction;

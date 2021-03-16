@@ -6,7 +6,6 @@ namespace App\Modules\Transactions\Domain\Services\Notifications;
 
 use App\Modules\Transactions\Infrastructure\Repositories\Api\TransactionNotificationSenderRepository;
 use App\Modules\Transactions\Infrastructure\Repositories\Queue\TransactionNotificationRepository;
-use Exception;
 
 final class TransactionNotificationService
 {

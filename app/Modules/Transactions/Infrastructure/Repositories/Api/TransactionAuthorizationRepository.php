@@ -29,7 +29,7 @@ final class TransactionAuthorizationRepository implements TransactionAuthorizati
         $responseStatusCode = $response->getStatusCode();
         $responseBody = json_decode((string) $response->getBody());
 
-        if ($responseStatusCode !== 200 || !isset($responseBody->message)) {
+        if (!isset($responseBody->message)) {
             throw new Exception('Erro: Não foi possível consultar o serviço de autorização de transferências.', 500);
         }
 

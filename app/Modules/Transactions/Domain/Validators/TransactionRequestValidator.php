@@ -22,11 +22,11 @@ final class TransactionRequestValidator
             throw new Exception('O valor da transferência deve ser um numero em formato decimal.', 422);
         }
 
-        if (!isset($data['payee']) || empty($data['payee'])) {
+        if (!isset($data['payer']) || empty($data['payer'])) {
             throw new Exception('Não foi possível recuperar o pagador.', 422);
         }
 
-        if (!isset($data['payer']) || empty($data['payer'])) {
+        if (!isset($data['payee']) || empty($data['payee'])) {
             throw new Exception('Informe o destinatário da transferência antes de continuar.', 422);
         }
 

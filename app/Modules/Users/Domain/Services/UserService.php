@@ -25,7 +25,7 @@ final class UserService
         $user = $this->userRepository->getUserById($userId);
 
         if (!$user) {
-            throw new Exception('Não foi possível recuperar o destinatário da transferência.', 422);
+            throw new Exception('Não foi possível recuperar o destinatário da transferência.', 500);
         }
 
         return $user;
@@ -43,8 +43,19 @@ final class UserService
             $decreaseUserId = $payload->payee;
         }
 
-        $this->userBalanceRepository->increaseUserBalance($increaseUserId, (float) $payload->value);
-        $this->userBalanceRepository->decreaseUserBalance($decreaseUserId, (float) $payload->value);
+        $increaseBalanceStatus = $this->userBalanceRepository->increaseUserBalance(
+            $increaseUserId,
+            (float) $payload->value
+        );
+
+        $decreaseBalanceStatus = $this->userBalanceRepository->decreaseUserBalance(
+            $decreaseUserId,
+            (float) $payload->value
+        );
+
+        if (!$increaseBalanceStatus || !$decreaseBalanceStatus) {
+            throw new Exception('Erro: Não foi possível atualizar o saldo das carteiras.', 500);
+        }
 
         return true;
     }

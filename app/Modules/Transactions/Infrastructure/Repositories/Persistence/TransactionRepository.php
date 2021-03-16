@@ -14,7 +14,10 @@ final class TransactionRepository implements TransactionRepositoryInterface
         $this->persistence = $persistence;
     }
 
-    public function getTransactionById(int $transactionId): object
+    /**
+     * @return object|null
+     */
+    public function getTransactionById(int $transactionId)
     {
         return $this->persistence::table('transactions')
             ->select('value', 'payer_id AS payer', 'payee_id AS payee')
