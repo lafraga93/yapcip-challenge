@@ -47,15 +47,22 @@ final class TransactionController extends BaseController
             $this->transactionService->setCurrentTransactionPayload($transaction, $payer);
             $this->transactionService->checkTransactionAcceptanceCriterias();
 
-            $response = $this->transactionService->execute();
-            $this->userService->updateUserBalance($response);
+            $responseTransaction = $this->transactionService->execute();
+            $this->userService->updateUserBalance($responseTransaction);
 
             $this->notificationService->add(
                 $payee,
                 $transaction->value
             );
+
+            $responseData = [
+                'transaction_id' => $responseTransaction->id,
+            ];
     
-            return JsonResponseTrait::response('Transação realizada com sucesso!');
+            return JsonResponseTrait::response(
+                'Transação realizada com sucesso!',
+                $responseData
+            );
         } catch (Exception $exception) {
             return JsonResponseTrait::response($exception->getMessage(), [], $exception->getCode());
         }

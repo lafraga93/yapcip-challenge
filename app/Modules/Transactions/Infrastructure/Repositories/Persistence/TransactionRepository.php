@@ -28,14 +28,16 @@ final class TransactionRepository implements TransactionRepositoryInterface
     {
         $transactionType = $this->getTransactionType($transactionTypeSlug);
 
-        $this->persistence::table('transactions')->insert([
+        $insertedId = $this->persistence::table('transactions')->insertGetId([
             'value' => $transaction->value,
             'payer_id' => $transaction->payer,
             'payee_id' => $transaction->payee,
             'transaction_type_id' => $transactionType->id,
         ]);
 
+        $transaction->id = $insertedId;
         $transaction->type = $transactionType->slug;
+
         return $transaction;
     }
 
