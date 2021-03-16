@@ -6,6 +6,9 @@ Quando uma transação é finalizada, o payload da notificação é persistido n
 
 O comando `app/Core/Console/Commands/DispatchTransactionNotifications.php` é responsável pelo processamento e envio das notificações. Se o envio é realizado com sucesso, a mensagem de notificação é imediatamente removida
 
+#### Despachando notificações represadas:
+`php /var/www/html/artisan notifications:transaction`
+
 ---
 
 ##### Sugestões de melhoria:
