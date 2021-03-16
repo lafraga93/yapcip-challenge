@@ -14,10 +14,12 @@ class UserTypesSeeder extends Seeder
     public function run(): void
     {
         DB::table($this->table)->insert([
-            'description' => 'common',
-        ]);
-        DB::table($this->table)->insert([
-            'description' => 'shopkeeper',
+            [
+                'slug' => 'common',
+            ],
+            [
+                'slug' => 'shopkeeper',
+            ],
         ]);
     }
 }

@@ -14,10 +14,14 @@ class TransactionTypeSeeder extends Seeder
     public function run(): void
     {
         DB::table($this->table)->insert([
-            'description' => 'transfer',
-        ]);
-        DB::table($this->table)->insert([
-            'description' => 'rollback',
+            [
+                'slug' => 'transfer',
+                'description' => 'Operação de transferência de valores para um destinatário',
+            ],
+            [
+                'slug' => 'rollback',
+                'description' => 'Operação de reversão de uma transação',
+            ],
         ]);
     }
 }

@@ -19,7 +19,6 @@ final class Transactions extends Migration
             $table->foreignId('payee_id')->constrained('users');
             $table->foreignId('transaction_type_id')->constrained();
             $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
         });
     }
 }

@@ -19,7 +19,6 @@ final class Users extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->foreignId('user_type_id')->constrained();
-            $table->decimal('balance');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
         });

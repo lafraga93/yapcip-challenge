@@ -14,7 +14,7 @@ final class UserTypes extends Migration
     {
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
-            $table->string('description');
+            $table->string('slug');
         });
     }
 

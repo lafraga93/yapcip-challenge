@@ -6,21 +6,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class TransactionTypes extends Migration
+final class Wallets extends Migration
 {
-    private string $table = 'transaction_types';
+    private string $table = 'wallets';
 
     public function up(): void
     {
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
-            $table->string('slug');
-            $table->string('description');
+            $table->decimal('balance')->default(0);
+            $table->foreignId('user_id')->constrained();
+            $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
         });
-    }
-
-    public function down(): void
-    {
-        Schema::drop($this->table);
     }
 }
