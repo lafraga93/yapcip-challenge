@@ -6,5 +6,6 @@ namespace App\Modules\Users\Domain\Repositories\Persistence;
 
 interface UserRepositoryInterface
 {
-    public function getUserById(int $userId): object;
+    /** @return object|null */
+    public function getUserById(int $userId);
 }
