@@ -7,7 +7,7 @@ A simple RESTFul API that simulates a money transactions between users
 ### Setup
 `./docker/scripts/setup.sh`
 
-> Irá innstalar as dependências PHP, rodar as migrations e popular as tabelas do banco de dados
+> Irá instalar as dependências PHP, rodar as migrations e popular as tabelas do banco de dados
 
 ### Documentação
 * [Modelagem de Dados]()
