@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Http\Controllers;
 
 use App\Core\Common\Helpers\JsonResponseTrait;
-use App\Modules\Transactions\Domain\Services\Notifications\TransactionNotificationProcessor;
+use App\Modules\Transactions\Domain\Services\Notifications\TransactionNotificationService;
 use App\Modules\Transactions\Domain\Services\TransactionService;
 use App\Modules\Transactions\Domain\Validators\TransactionRequestValidator;
 use App\Modules\Users\Domain\Services\UserService;
@@ -17,36 +17,44 @@ final class TransactionController extends BaseController
 {
     use JsonResponseTrait;
 
-    private TransactionNotificationProcessor $notificationProcessor;
+    private TransactionNotificationService $notificationService;
     private TransactionRequestValidator $requestValidator;
     private TransactionService $transactionService;
     private UserService $userService;
     
     public function __construct(
-        TransactionNotificationProcessor $notificationProcessor,
+        TransactionNotificationService $notificationService,
         TransactionRequestValidator $requestValidator,
         TransactionService $transactionService,
         UserService $userService
     ) {
-        $this->notificationProcessor = $notificationProcessor;
+        $this->notificationService = $notificationService;
         $this->requestValidator = $requestValidator;
         $this->transactionService = $transactionService;
         $this->userService = $userService;
     }
 
-    public function make(Request $request): JsonResponse
+    public function makeTransaction(Request $request): JsonResponse
     {
         try {
-            $transaction = $this->requestValidator->validate($request->all());
-            $payee = $this->userService->getUserById($transaction->payee);
+            $transaction = $this->requestValidator->validate(
+                $request->all()
+            );
 
-            $this->transactionService->setCurrentTransactionPayload($transaction, $payee);
+            $payer = $this->userService->getUserById($transaction->payer);
+            $payee = $this->userService->getUserById($transaction->payee);
+            
+            $this->transactionService->setCurrentTransactionPayload($transaction, $payer);
             $this->transactionService->checkTransactionAcceptanceCriterias();
 
             $response = $this->transactionService->execute();
             $this->userService->updateUserBalance($response);
 
-            $this->notificationProcessor->add($payee, $transaction->value);
+            $this->notificationService->add(
+                $payee,
+                $transaction->value
+            );
+    
             return JsonResponseTrait::response('Transação realizada com sucesso!');
         } catch (Exception $exception) {
             return JsonResponseTrait::response($exception->getMessage(), [], $exception->getCode());
@@ -65,7 +73,7 @@ final class TransactionController extends BaseController
             $response = $this->transactionService->reverse();
             $this->userService->updateUserBalance($response);
 
-            return JsonResponseTrait::response('Transação realizada com sucesso!');
+            return JsonResponseTrait::response('Operação realizada com sucesso!');
         } catch (Exception $exception) {
             return JsonResponseTrait::response($exception->getMessage(), [], $exception->getCode());
         }
