@@ -10,9 +10,9 @@ A simple RESTFul API that simulates a money transactions between users
 > Irá instalar as dependências PHP, rodar as migrations e popular as tabelas do banco de dados
 
 ### Documentação
-* [Modelagem de Dados]()
-* [Endpoints]()
-* [Notificações]()
+* [Modelagem de Dados](https://github.com/lafraga93/yapcip-challenge/wiki/Modelagem-de-Dados)
+* [Endpoints](https://github.com/lafraga93/yapcip-challenge/wiki/Endpoints)
+* [Notificações](https://github.com/lafraga93/yapcip-challenge/wiki/Notifica%C3%A7%C3%B5es)
 
 ### Rodar suíte de testes de unidade
 `docker exec -it challenge-php vendor/bin/phpunit`
