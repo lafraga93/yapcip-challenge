@@ -4,16 +4,16 @@ A simple RESTFul API that simulates a money transactions between users
 ### Up Docker Containers
 `cd docker && docker-compose down && docker-compose up -d && cd ../`
 
-### Setup Project
+### Setup
 `./docker/scripts/setup.sh`
 
->Esse script irá gerar os arquivos de configuração necessários, instalar as dependências PHP via composer, rodar as migrations e popular as tabelas do banco de dados para que seja possível executar os testes de integração
-
----
+> Irá innstalar as dependências PHP, rodar as migrations e popular as tabelas do banco de dados
 
 ### Documentação
+* [Modelagem de Dados]()
 * [Endpoints]()
-* [Fluxo de notificação]()
+* [Notificações]()
+* [Melhorias]()
 
-### Unit Tests
+### Rodar suíte de testes de unidade
 `docker exec -it challenge-php vendor/bin/phpunit`
