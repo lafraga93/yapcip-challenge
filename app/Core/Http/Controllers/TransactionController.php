@@ -9,9 +9,10 @@ use App\Modules\Transactions\Domain\Services\Notifications\TransactionNotificati
 use App\Modules\Transactions\Domain\Services\TransactionService;
 use App\Modules\Transactions\Domain\Validators\TransactionRequestValidator;
 use App\Modules\Users\Domain\Services\UserService;
-use Illuminate\Http\{JsonResponse, Request};
-use Laravel\Lumen\Routing\Controller as BaseController;
 use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Laravel\Lumen\Routing\Controller as BaseController;
 
 final class TransactionController extends BaseController
 {
@@ -21,7 +22,7 @@ final class TransactionController extends BaseController
     private TransactionRequestValidator $requestValidator;
     private TransactionService $transactionService;
     private UserService $userService;
-    
+
     public function __construct(
         TransactionNotificationService $notificationService,
         TransactionRequestValidator $requestValidator,
@@ -43,7 +44,7 @@ final class TransactionController extends BaseController
 
             $payer = $this->userService->getUserById($transaction->payer);
             $payee = $this->userService->getUserById($transaction->payee);
-            
+
             $this->transactionService->setCurrentTransactionPayload($transaction, $payer);
             $this->transactionService->checkTransactionAcceptanceCriterias();
 
@@ -58,7 +59,7 @@ final class TransactionController extends BaseController
             $responseData = [
                 'transaction_id' => $responseTransaction->id,
             ];
-    
+
             return JsonResponseTrait::response(
                 'Transação realizada com sucesso!',
                 $responseData

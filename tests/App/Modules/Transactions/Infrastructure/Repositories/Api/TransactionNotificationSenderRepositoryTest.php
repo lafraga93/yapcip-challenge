@@ -21,10 +21,10 @@ final class TransactionNotificationSenderRepositoryTest extends TestCase
         $handlerStack = HandlerStack::create(new MockHandler([$response]));
 
         $repository = BaseFactory::create(
-            TransactionNotificationSenderRepository::class, 
+            TransactionNotificationSenderRepository::class,
             [new Client(['handler' => $handlerStack])]
         );
 
-        $this->assertFalse($repository->fire(new stdClass));
+        $this->assertFalse($repository->fire(new stdClass()));
     }
 }

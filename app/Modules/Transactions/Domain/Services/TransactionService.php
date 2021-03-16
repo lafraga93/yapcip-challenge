@@ -13,16 +13,16 @@ final class TransactionService
 {
     /** @var string */
     const TRANSFER_SLUG = 'transfer';
- 
+
     /** @var string */
     const ROLLBACK_SLUG = 'rollback';
 
     private TransactionCriteriasChecker $criteriasChecker;
     private TransactionAuthorizationRepository $authorizationRepository;
     private TransactionRepository $transactionRepository;
-    
+
     private array $payload;
-    
+
     public function __construct(
         TransactionCriteriasChecker $criteriasChecker,
         TransactionAuthorizationRepository $authorizationRepository,

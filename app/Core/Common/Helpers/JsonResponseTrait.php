@@ -6,7 +6,8 @@ namespace App\Core\Common\Helpers;
 
 use Illuminate\Http\JsonResponse;
 
-trait JsonResponseTrait {
+trait JsonResponseTrait
+{
     public static function response(string $message = '', array $data = [], int $code = 200): JsonResponse
     {
         return response()->json([

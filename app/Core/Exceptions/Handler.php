@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Core\Exceptions;
 
 use App\Core\Common\Helpers\JsonResponseTrait;
-use Illuminate\Http\{JsonResponse, Request};
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Throwable;
-use Exception;
 
 final class Handler extends ExceptionHandler
 {

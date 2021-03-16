@@ -51,6 +51,6 @@ final class TransactionCriteriasCheckerTest extends TestCase
         $this->expectException(Exception::class);
 
         $value = TransactionCriteriasChecker::MIN_TRANSFER_VALUE - 0.10;
-        $criteriaValidator->checkMinimalTrasnferValue($value);        
+        $criteriaValidator->checkMinimalTrasnferValue($value);
     }
 }

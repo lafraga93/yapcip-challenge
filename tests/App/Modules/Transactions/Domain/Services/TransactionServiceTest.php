@@ -29,7 +29,7 @@ final class TransactionServiceTest extends TestCase
 
         $expected = [
             'transaction' => $transaction,
-            'payer' => $payer
+            'payer' => $payer,
         ];
 
         $service = $this->app->make(TransactionService::class);

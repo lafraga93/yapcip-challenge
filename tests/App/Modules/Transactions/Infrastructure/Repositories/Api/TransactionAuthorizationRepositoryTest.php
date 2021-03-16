@@ -20,7 +20,7 @@ final class TransactionAuthorizationRepositoryTest extends TestCase
         $handlerStack = HandlerStack::create(new MockHandler([$response]));
 
         $repository = BaseFactory::create(
-            TransactionAuthorizationRepository::class, 
+            TransactionAuthorizationRepository::class,
             [new Client(['handler' => $handlerStack])]
         );
 

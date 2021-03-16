@@ -31,5 +31,5 @@ final class TransactionRequestValidator
         }
 
         return (object) $data;
-    } 
+    }
 }

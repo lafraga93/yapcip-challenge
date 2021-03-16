@@ -33,7 +33,7 @@ final class UserService
 
     public function updateUserBalance(object $payload): bool
     {
-        if ($payload->type === TransactionService::TRANSFER_SLUG) { 
+        if ($payload->type === TransactionService::TRANSFER_SLUG) {
             $increaseUserId = $payload->payee;
             $decreaseUserId = $payload->payer;
         }

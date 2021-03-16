@@ -31,10 +31,10 @@ final class UserServiceTest extends TestCase
 
         $service = BaseFactory::create(UserService::class, [
             $userBalanceRepositoryMock,
-            $userRepositoryMock
+            $userRepositoryMock,
         ]);
 
-        $this->assertEquals($expected, $service->getUserById(1));        
+        $this->assertEquals($expected, $service->getUserById(1));
     }
 
     public function testGetUserByThrowExceptionWhenUserNotFound(): void
@@ -51,7 +51,7 @@ final class UserServiceTest extends TestCase
 
         $service = BaseFactory::create(UserService::class, [
             $userBalanceRepositoryMock,
-            $userRepositoryMock
+            $userRepositoryMock,
         ]);
 
         $this->expectExceptionObject(
@@ -79,7 +79,7 @@ final class UserServiceTest extends TestCase
 
         $service = BaseFactory::create(UserService::class, [
             $userBalanceRepositoryMock,
-            $userRepositoryMock
+            $userRepositoryMock,
         ]);
 
         $this->assertTrue($service->updateUserBalance((object) $fixture));
@@ -103,7 +103,7 @@ final class UserServiceTest extends TestCase
 
         $service = BaseFactory::create(UserService::class, [
             $userBalanceRepositoryMock,
-            $userRepositoryMock
+            $userRepositoryMock,
         ]);
 
         $this->expectExceptionObject(
