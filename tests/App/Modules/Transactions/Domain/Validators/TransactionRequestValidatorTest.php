@@ -20,7 +20,10 @@ final class TransactionRequestValidatorTest extends TestCase
         $data = [];
         $validator = $this->app->make(TransactionRequestValidator::class);
 
-        $this->expectExceptionObject(new Exception('Não foi possível processar o payload.', 422));
+        $this->expectExceptionObject(
+            new Exception('Não foi possível processar o payload.', 422)
+        );
+
         $validator->validate($data);
     }
 
@@ -47,7 +50,10 @@ final class TransactionRequestValidatorTest extends TestCase
 
         $validator = $this->app->make(TransactionRequestValidator::class);
 
-        $this->expectExceptionObject(new Exception('Não foi possível recuperar o pagador.', 422));
+        $this->expectExceptionObject(
+            new Exception('Não foi possível recuperar o pagador.', 422)
+        );
+
         $validator->validate($data);
 
         $data = [
@@ -55,7 +61,10 @@ final class TransactionRequestValidatorTest extends TestCase
             'payer' => '',
         ];
 
-        $this->expectExceptionObject(new Exception('Não foi possível recuperar o pagador.', 422));
+        $this->expectExceptionObject(
+            new Exception('Não foi possível recuperar o pagador.', 422)
+        );
+
         $validator->validate($data);
     }
 
@@ -78,7 +87,6 @@ final class TransactionRequestValidatorTest extends TestCase
             'value' => 1.00,
             'payer' => 1,
             'payee' => '',
-
         ];
 
         $this->expectExceptionObject(

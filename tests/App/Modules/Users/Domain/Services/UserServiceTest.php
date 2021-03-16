@@ -106,7 +106,10 @@ final class UserServiceTest extends TestCase
             $userRepositoryMock
         ]);
 
-        $this->expectExceptionObject(new Exception('Erro: Não foi possível atualizar o saldo das carteiras.', 500));
+        $this->expectExceptionObject(
+            new Exception('Erro: Não foi possível atualizar o saldo das carteiras.', 500)
+        );
+
         $service->updateUserBalance((object) $fixture);
     }
 }

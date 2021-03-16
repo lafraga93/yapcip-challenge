@@ -23,7 +23,10 @@ final class TransactionCriteriasCheckerTest extends TestCase
 
         $criteriaValidator = $this->app->make(TransactionCriteriasChecker::class);
 
-        $this->expectExceptionObject(new Exception('Somente usuários comuns podem realizar transferências.', 422));
+        $this->expectExceptionObject(
+            new Exception('Somente usuários comuns podem realizar transferências.', 422)
+        );
+
         $criteriaValidator->checkPayerUserType($user);
     }
 
@@ -34,7 +37,10 @@ final class TransactionCriteriasCheckerTest extends TestCase
 
         $criteriaValidator = $this->app->make(TransactionCriteriasChecker::class);
 
-        $this->expectExceptionObject(new Exception('Saldo insuficiente para realizar a transação.', 422));
+        $this->expectExceptionObject(
+            new Exception('Saldo insuficiente para realizar a transação.', 422)
+        );
+
         $criteriaValidator->checkPayerFunds($user, 11.00);
     }
 

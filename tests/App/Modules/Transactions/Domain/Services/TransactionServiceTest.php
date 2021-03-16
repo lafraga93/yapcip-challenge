@@ -66,7 +66,10 @@ final class TransactionServiceTest extends TestCase
             $repositoryMock,
         ]);
 
-        $this->expectExceptionObject(new Exception('Erro: Transação não autorizada.', 401));
+        $this->expectExceptionObject(
+            new Exception('Erro: Transação não autorizada.', 401)
+        );
+
         $service->execute();
     }
 
@@ -92,7 +95,10 @@ final class TransactionServiceTest extends TestCase
             $repositoryMock,
         ]);
 
-        $this->expectExceptionObject(new Exception('Não foi possível recuperar a transação.', 500));
+        $this->expectExceptionObject(
+            new Exception('Não foi possível recuperar a transação.', 500)
+        );
+
         $service->getTransactionById(1);
     }
 
