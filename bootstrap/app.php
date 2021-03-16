@@ -14,9 +14,16 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
+$app->withFacades();
+
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Core\Exceptions\Handler::class
+);
+
+$app->singleton(
+    Illuminate\Contracts\Console\Kernel::class,
+    App\Core\Console\Kernel::class
 );
 
 $app->configure('app');
