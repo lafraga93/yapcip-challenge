@@ -13,7 +13,6 @@ A simple RESTFul API that simulates a money transactions between users
 * [Modelagem de Dados]()
 * [Endpoints]()
 * [Notificações]()
-* [Melhorias]()
 
 ### Rodar suíte de testes de unidade
 `docker exec -it challenge-php vendor/bin/phpunit`
