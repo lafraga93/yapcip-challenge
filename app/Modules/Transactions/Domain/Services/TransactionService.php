@@ -11,6 +11,12 @@ use Exception;
 
 final class TransactionService
 {
+    /** @var string */
+    const TRANSFER_SLUG = 'transfer';
+ 
+    /** @var string */
+    const ROLLBACK_SLUG = 'rollback';
+
     private TransactionCriteriasChecker $criteriasChecker;
     private TransactionAuthorizationRepository $authorizationRepository;
     private TransactionRepository $transactionRepository;
@@ -27,18 +33,22 @@ final class TransactionService
         $this->transactionRepository = $transactionRepository;
     }
 
-    public function setCurrentTransactionPayload(object $transaction, $payee = null): void
+    public function setCurrentTransactionPayload(object $transaction, $payer = null): void
     {
         $this->payload = [
             'transaction' => $transaction,
-            'payee' => $payee,
+            'payer' => $payer,
         ];
     }
 
     public function checkTransactionAcceptanceCriterias(): bool
     {
-        $this->criteriasChecker->checkPayeeUserType($this->payload['payee']);
-        $this->criteriasChecker->checkMinimalTrasnferValue($this->payload['transaction']->value);
+        $payer = $this->payload['payer'];
+        $transactionValue = $this->payload['transaction']->value;
+
+        $this->criteriasChecker->checkPayerUserType($payer);
+        $this->criteriasChecker->checkPayerFunds($payer, $transactionValue);
+        $this->criteriasChecker->checkMinimalTrasnferValue($transactionValue);
 
         return true;
     }
@@ -51,21 +61,27 @@ final class TransactionService
             throw new Exception('Erro: Transação não autorizada.', 500);
         }
 
-        return $this->persiste();
+        return $this->persiste(self::TRANSFER_SLUG);
     }
 
     public function reverse(): object
     {
-        return $this->persiste();
+        return $this->persiste(self::ROLLBACK_SLUG);
     }
 
     public function getTransactionById(int $transactionId): object
     {
-        return $this->transactionRepository->getTransactionById($transactionId);
+        $transaction = $this->transactionRepository->getTransactionById($transactionId);
+
+        if (!$transaction) {
+            throw new Exception('Não foi possível recuperar a transação.', 422);
+        }
+
+        return $transaction;
     }
 
-    private function persiste(): object
+    private function persiste(string $transactionTypeSlug): object
     {
-        return $this->transactionRepository->persiste($this->payload['transaction']);
+        return $this->transactionRepository->persiste($this->payload['transaction'], $transactionTypeSlug);
     }
 }

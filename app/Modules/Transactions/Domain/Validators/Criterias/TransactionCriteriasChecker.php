@@ -14,6 +14,24 @@ final class TransactionCriteriasChecker
     /** @var string */
     const COMMON_USER_TYPE_SLUG = 'common';
 
+    public function checkPayerUserType(object $user): bool
+    {
+        if ($user->type !== self::COMMON_USER_TYPE_SLUG) {
+            throw new Exception("Somente usuários comuns podem realizar transferências.", 422);
+        }
+
+        return true;
+    }
+
+    public function checkPayerFunds(object $user, float $transactionValue): bool
+    {
+        if ($user->balance < $transactionValue) {
+            throw new Exception("Saldo insuficiente para realizar a transação.", 422);
+        }
+
+        return true;
+    }
+
     public function checkMinimalTrasnferValue(float $value): bool
     {
         if ($value < self::MIN_TRANSFER_VALUE) {
@@ -23,13 +41,4 @@ final class TransactionCriteriasChecker
 
         return true;
     }
-
-    public function checkPayeeUserType(object $user): bool
-    {
-        if ($user->type !== self::COMMON_USER_TYPE_SLUG) {
-            throw new Exception("Somente é possível realizar transferências para usuários comuns.", 422);
-        }
-
-        return true;
-    } 
 }

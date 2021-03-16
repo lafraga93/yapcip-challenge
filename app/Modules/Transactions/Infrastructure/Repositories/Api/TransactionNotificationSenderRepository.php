@@ -4,33 +4,33 @@ declare(strict_types=1);
 
 namespace App\Modules\Transactions\Infrastructure\Repositories\Api;
 
-use App\Modules\Transactions\Domain\Repositories\Api\TransactionAuthorizationRepositoryInterface;
+use App\Modules\Transactions\Domain\Repositories\Api\TransactionNotificationSenderRepositoryInterface;
 use Exception;
 use GuzzleHttp\Client;
 
-final class TransactionAuthorizationRepository implements TransactionAuthorizationRepositoryInterface
+final class TransactionNotificationSenderRepository implements TransactionNotificationSenderRepositoryInterface
 {
     /** @var string */
-    const URI = 'https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6';
+    const URI = 'https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04';
 
     /** @var string */
-    const PASS_PHRASE = 'Autorizado';
+    const PASS_PHRASE = 'Enviado';
 
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
-    public function check(): bool
+    public function fire(object $payload): bool
     {
-        /** this is a faker request */
+        /** this is a faker request, should be a `POST` with `$payload` */
         $response = $this->client->request('GET', self::URI);
 
         $responseStatusCode = $response->getStatusCode();
         $responseBody = json_decode((string) $response->getBody());
 
         if ($responseStatusCode !== 200 || !isset($responseBody->message)) {
-            throw new Exception('Erro: Não foi possível consultar o serviço de autorização de transferências.', 500);
+            throw new Exception('Erro: Não foi possível acessar o serviço de envio de notificações.', 500);
         }
 
         if ($responseBody->message !== self::PASS_PHRASE) {
