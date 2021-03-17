@@ -12,10 +12,10 @@ use Exception;
 final class TransactionService
 {
     /** @var string */
-    const TRANSFER_SLUG = 'transfer';
+    public const TRANSFER_SLUG = 'transfer';
 
     /** @var string */
-    const ROLLBACK_SLUG = 'rollback';
+    public const ROLLBACK_SLUG = 'rollback';
 
     private TransactionCriteriasChecker $criteriasChecker;
     private TransactionAuthorizationRepository $authorizationRepository;
