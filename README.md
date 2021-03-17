@@ -1,3 +1,6 @@
+
+[![BCH compliance](https://bettercodehub.com/edge/badge/lafraga93/yapcip-challenge?branch=main)](https://bettercodehub.com/)
+
 # challenge
 A simple RESTFul API that simulates a money transactions between users
 
