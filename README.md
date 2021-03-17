@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.com/lafraga93/yapcip-challenge.svg?branch=main)](https://travis-ci.com/lafraga93/yapcip-challenge)
 [![BCH compliance](https://bettercodehub.com/edge/badge/lafraga93/yapcip-challenge?branch=main)](https://bettercodehub.com/)
+[![StyleCI](https://github.styleci.io/repos/346148970/shield?branch=main)](https://github.styleci.io/repos/346148970?branch=main)
 
 # challenge
 A simple RESTFul API that simulates a money transactions between users
