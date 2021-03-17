@@ -1,7 +1,8 @@
 risky: false
 
-version: 7.4
+version: 7
 
 preset:
   - psr1
+  - psr2
   - psr12
