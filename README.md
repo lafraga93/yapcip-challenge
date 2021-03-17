@@ -1,4 +1,4 @@
-
+[![Build Status](https://travis-ci.com/lafraga93/yapcip-challenge.svg?branch=main)](https://travis-ci.com/lafraga93/yapcip-challenge)
 [![BCH compliance](https://bettercodehub.com/edge/badge/lafraga93/yapcip-challenge?branch=main)](https://bettercodehub.com/)
 
 # challenge
