@@ -9,10 +9,10 @@ use Exception;
 final class TransactionCriteriasChecker
 {
     /** @var string */
-    const MIN_TRANSFER_VALUE = 5.00;
+    public const MIN_TRANSFER_VALUE = 5.00;
 
     /** @var string */
-    const COMMON_USER_TYPE_SLUG = 'common';
+    public const COMMON_USER_TYPE_SLUG = 'common';
 
     public function checkPayerUserType(object $user): bool
     {

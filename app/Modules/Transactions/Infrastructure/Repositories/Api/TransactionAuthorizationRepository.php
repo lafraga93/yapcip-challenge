@@ -11,10 +11,10 @@ use GuzzleHttp\Client;
 final class TransactionAuthorizationRepository implements TransactionAuthorizationRepositoryInterface
 {
     /** @var string */
-    const URI = 'https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6';
+    public const URI = 'https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6';
 
     /** @var string */
-    const PASS_PHRASE = 'Autorizado';
+    public const PASS_PHRASE = 'Autorizado';
 
     public function __construct(Client $client)
     {

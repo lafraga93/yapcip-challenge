@@ -11,10 +11,10 @@ use GuzzleHttp\Client;
 final class TransactionNotificationSenderRepository implements TransactionNotificationSenderRepositoryInterface
 {
     /** @var string */
-    const URI = 'https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04';
+    public const URI = 'https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04';
 
     /** @var string */
-    const PASS_PHRASE = 'Enviado';
+    public const PASS_PHRASE = 'Enviado';
 
     public function __construct(Client $client)
     {
